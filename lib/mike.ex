@@ -5,7 +5,7 @@ defmodule Mike do
     Supervisor.start_link(__MODULE__, [])
   end
 
-  def init() do
+  def init(_) do
     children = [
       worker(Joe, []),
       worker(Robert, [])
@@ -13,6 +13,6 @@ defmodule Mike do
 
     opts = [strategy: :one_for_one, name: :mike_williams]
 
-    Supervisor.start_link(children, opts)
+    supervise(children, opts)
   end	
 end
